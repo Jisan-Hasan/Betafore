@@ -2,12 +2,16 @@ import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import globalErrorHandler from "./middlewares/globalErrorHandler";
+import router from "./routes";
 
 const app: Application = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// api routes
+app.use("/api/v1", router);
 
 // test api
 app.get("/", (req: Request, res: Response) => {
