@@ -1,6 +1,7 @@
 import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
+import globalErrorHandler from "./middlewares/globalErrorHandler";
 
 const app: Application = express();
 
@@ -12,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello from Betafore Task!");
 });
+
+// global error handler
+app.use(globalErrorHandler);
 
 //handle not found api routes
 app.use((req: Request, res: Response, next: NextFunction) => {
