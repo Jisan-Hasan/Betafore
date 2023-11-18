@@ -12,4 +12,5 @@ export default {
         expires_in: process.env.JWT_EXPIRES_IN,
     },
     bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
+    stripe_secret_key: process.env.STRIPE_SECRET_KEY,
 };
