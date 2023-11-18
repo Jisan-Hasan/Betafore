@@ -7,6 +7,7 @@ import { useGetProductsQuery } from "@/redux/features/api/productApi";
 const HomePage = () => {
     const { data, isLoading, error } = useGetProductsQuery({});
 
+    // loading state
     if (isLoading) {
         return <div>Loading...</div>;
     }

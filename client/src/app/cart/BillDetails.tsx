@@ -2,6 +2,7 @@ import { useAppSelector } from "@/redux/app/hooks";
 import Link from "next/link";
 
 const BillDetails = () => {
+    // calculate total price in the cart
     const { cart } = useAppSelector((state) => state.cart);
     let subTotal = 0;
     if (cart) {
@@ -12,6 +13,7 @@ const BillDetails = () => {
             return total;
         }, 0);
     }
+    
     return (
         <div>
             <div className="">

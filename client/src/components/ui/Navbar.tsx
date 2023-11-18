@@ -14,6 +14,7 @@ const NavbarComponent = () => {
     const dispatch = useAppDispatch();
     const { token } = useAppSelector((state) => state.auth);
 
+    // handle logout
     const handleLogout = () => {
         dispatch(clearToken());
         toast.success("Logged out successfully");
@@ -42,13 +43,16 @@ const NavbarComponent = () => {
                 </Link>
             </Navbar.Brand>
             <div className="flex md:order-2 gap-2">
-                <Button
-                    outline
-                    color="blue"
-                    onClick={() => router.push("/cart")}
-                >
-                    <BsCart size={20} className="mr-2" /> ${subTotal.toFixed(2)}
-                </Button>
+                {token && (
+                    <Button
+                        outline
+                        color="blue"
+                        onClick={() => router.push("/cart")}
+                    >
+                        <BsCart size={20} className="mr-2" /> $
+                        {subTotal.toFixed(2)}
+                    </Button>
+                )}
                 {!token ? (
                     <Button onClick={() => router.push("/signin")} color="blue">
                         Sign In

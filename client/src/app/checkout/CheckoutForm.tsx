@@ -122,6 +122,7 @@ const CheckoutForm = ({ price = 0 }: { price: number }) => {
     const [clientSecret, setClientSecret] = useState<string>("");
 
     const [createPaymentIntent] = useCreatePaymentIntentMutation();
+    // create payment intent
     useEffect(() => {
         createPaymentIntent(price)
             .unwrap()
@@ -133,6 +134,7 @@ const CheckoutForm = ({ price = 0 }: { price: number }) => {
             });
     }, []);
 
+    // handle payment confirmation
     const handleSubmit = async (event: any) => {
         event.preventDefault();
 
@@ -142,12 +144,11 @@ const CheckoutForm = ({ price = 0 }: { price: number }) => {
             return;
         }
 
+        // get card element
         const card = elements.getElement(CardElement);
-
         if (card == null) {
             return;
         }
-
         if (error) {
             card.focus();
             return;
@@ -188,7 +189,7 @@ const CheckoutForm = ({ price = 0 }: { price: number }) => {
         }
 
         if (paymentIntent?.status === "succeeded") {
-            const transactionId = paymentIntent?.id;
+            // const transactionId = paymentIntent?.id;
 
             // clear cart
             dispatch(clearCart());
@@ -197,17 +198,6 @@ const CheckoutForm = ({ price = 0 }: { price: number }) => {
 
             router.push("/checkout/success");
         }
-    };
-
-    const reset = () => {
-        setError(null);
-        setProcessing(false);
-        setPaymentMethod(null);
-        setBillingDetails({
-            email: "",
-            phone: "",
-            name: "",
-        });
     };
 
     return (

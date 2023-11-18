@@ -16,6 +16,7 @@ const SignupPage = () => {
 
     const [signup, { isLoading }] = useSignupMutation();
 
+    // handle form submit
     const onSubmit: SubmitHandler<any> = (data) => {
         try {
             signup(data)
@@ -31,6 +32,7 @@ const SignupPage = () => {
             toast.error("Something went wrong");
         }
     };
+    
     return (
         <div className="max-w-lg mx-auto mt-10  md:mt-14 lg:mt-20 bg-gray-100 px-12 py-14 rounded-xl divide-y-2">
             <h3 className="text-3xl font-bold mb-5 text-center">Sign Up</h3>
