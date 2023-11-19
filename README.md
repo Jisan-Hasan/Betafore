@@ -9,3 +9,10 @@
 ## Server: https://betafore-server.vercel.app/
 
 ## GitHub: https://github.com/Jisan-Hasan/Betafore
+
+#### Test Credentials:
+
+```
+Email: jisan@gmail.com
+Password: 000000
+```
