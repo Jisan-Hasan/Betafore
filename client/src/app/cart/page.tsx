@@ -2,8 +2,9 @@
 
 import PrivateRoute from "@/components/PrivateRoute";
 import { useAppSelector } from "@/redux/app/hooks";
-import BillDetails from "./BillDetails";
-import CartCard from "./CartCard";
+import dynamic from "next/dynamic";
+import BillDetails from "../../components/ui/BillDetails";
+import CartCard from "../../components/ui/CartCard";
 
 const CartPage = () => {
     const { cart } = useAppSelector((state) => state.cart);
@@ -32,4 +33,6 @@ const CartPage = () => {
     );
 };
 
-export default CartPage;
+export default dynamic(() => Promise.resolve(CartPage), {
+    ssr: false,
+});

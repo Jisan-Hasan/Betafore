@@ -6,6 +6,7 @@ import { clearCart } from "@/redux/features/cart/cartSlice";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { StripeError } from "@stripe/stripe-js";
 import { Button, Label, TextInput } from "flowbite-react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -132,7 +133,7 @@ const CheckoutForm = ({ price = 0 }: { price: number }) => {
             .catch((err) => {
                 setError(err);
             });
-    }, []);
+    }, [createPaymentIntent, price]);
 
     // handle payment confirmation
     const handleSubmit = async (event: any) => {
@@ -275,4 +276,6 @@ const CheckoutForm = ({ price = 0 }: { price: number }) => {
     );
 };
 
-export default CheckoutForm;
+export default dynamic(() => Promise.resolve(CheckoutForm), {
+    ssr: false,
+});

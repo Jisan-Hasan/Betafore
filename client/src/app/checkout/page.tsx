@@ -6,7 +6,7 @@ import { useAppSelector } from "@/redux/app/hooks";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import dynamic from "next/dynamic";
-import CheckoutForm from "./CheckoutForm";
+import CheckoutForm from "../../components/ui/CheckoutForm";
 
 const stripePromise = loadStripe(config.PK as string);
 const CheckoutPage = () => {

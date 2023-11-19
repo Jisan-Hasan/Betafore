@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch } from "@/redux/app/hooks";
 import {
     Product,
@@ -5,6 +7,7 @@ import {
     increaseQuantity,
     removeFromCart,
 } from "@/redux/features/cart/cartSlice";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 
@@ -69,4 +72,7 @@ const CartCard = ({ product }: { product: Product }) => {
     );
 };
 
-export default CartCard;
+// dynamic export component
+export default dynamic(() => Promise.resolve(CartCard), {
+    ssr: false,
+});

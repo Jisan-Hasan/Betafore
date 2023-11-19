@@ -1,4 +1,7 @@
+"use client";
+
 import PrivateRoute from "@/components/PrivateRoute";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 const SuccessPage = () => {
@@ -22,4 +25,6 @@ const SuccessPage = () => {
     );
 };
 
-export default SuccessPage;
+export default dynamic(() => Promise.resolve(SuccessPage), {
+    ssr: false,
+});

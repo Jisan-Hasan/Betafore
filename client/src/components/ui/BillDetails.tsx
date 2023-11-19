@@ -1,4 +1,5 @@
 import { useAppSelector } from "@/redux/app/hooks";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 const BillDetails = () => {
@@ -13,7 +14,7 @@ const BillDetails = () => {
             return total;
         }, 0);
     }
-    
+
     return (
         <div>
             <div className="">
@@ -53,4 +54,6 @@ const BillDetails = () => {
     );
 };
 
-export default BillDetails;
+export default dynamic(() => Promise.resolve(BillDetails), {
+    ssr: false,
+});
